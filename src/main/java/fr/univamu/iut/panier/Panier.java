@@ -1,7 +1,7 @@
 package fr.univamu.iut.panier;
 
 import java.util.Date;
-import java.util.Dictionary;
+import java.util.Map;
 
 public class Panier {
     /**
@@ -17,7 +17,7 @@ public class Panier {
     /**
      * Id des produits composant le panier associés à leur quantité dans le panier et à leur unité
      */
-    Dictionary<String,Dictionary<Integer,String>> produits;
+    Map<String, Map<Integer, String>> produits;
 
     /**
      * Prix du panier
@@ -37,7 +37,7 @@ public class Panier {
      * @param prix Prix du panier
      * @param dateMaj Date de la dernière mise à jour du panier
      */
-    public Panier(String id, String quantite, Dictionary<String, Dictionary<Integer, String>> produits, int prix, Date dateMaj) {
+    public Panier(String id, String quantite, Map<String, Map<Integer, String>> produits, int prix, Date dateMaj) {
         this.id = id;
         this.quantite = quantite;
         this.produits = produits;
@@ -81,7 +81,7 @@ public class Panier {
      * Méthode permettant d'accéder aux produits
      * @return une chaîne de caractères avec produits
      */
-    public Dictionary<String, Dictionary<Integer, String>> getProduits() {
+    public Map<String, Map<Integer, String>> getProduits() {
         return produits;
     }
 
@@ -89,7 +89,7 @@ public class Panier {
      * Méthode permettant de modifier les produits
      * @param produits une chaîne de caractères avec les produits à utiliser
      */
-    public void setProduits(Dictionary<String, Dictionary<Integer, String>> produits) {
+    public void setProduits(Map<String, Map<Integer, String>> produits) {
         this.produits = produits;
     }
 
