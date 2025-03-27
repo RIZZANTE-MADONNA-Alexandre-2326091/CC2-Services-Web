@@ -1,4 +1,4 @@
-# <ins>R4.01</ins>: Projet de services Web
+# <ins>R4.01 CC2</ins>: Projet de services Web
 
 ## Description:
 
@@ -13,14 +13,14 @@ L'IHM permet d'utiliser les API pour les afficher dans une interface graphique.
 ## Branches:
 
 Il y a 4 branches:
-- **el-almoussi**: branche de EL-ALMOUSSI Youssef,
+- **el-almoussi**: branche de EL ALMOUSSI Youssef,
 -  **fabre**: branche de FABRE Alexandre,
 -  **rizzantemadonna**: branche de RIZZANTE--MADONNA Alexandre,
 -  **sebbak**: branche de SEBBAK Mehdi.
 
 
 ## Réalisé par
-- EL-ALMOUSSI Youssef
+- EL ALMOUSSI Youssef
 - FABRE Alexandre
 - RIZZANTE--MADONNA Alexandre
 - SEBBAK Mehdi 
