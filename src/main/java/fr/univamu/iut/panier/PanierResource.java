@@ -46,16 +46,16 @@ public class PanierResource {
     }
 
     /**
-     * Endpoint permettant de publier les informations d'un panier dont la référence est passée paramètre dans le chemin
-     * @param reference référence du panier recherché
+     * Endpoint permettant de publier les informations d'un panier dont l'id est passée paramètre dans le chemin
+     * @param id id du panier recherché
      * @return les informations du panier recherché au format JSON
      */
     @GET
-    @Path("{reference}")
+    @Path("{id}")
     @Produces("application/json")
-    public String getPanier( @PathParam("reference") String reference){
+    public String getPanier( @PathParam("id") String id){
 
-        String result = service.getPanierJSON(reference);
+        String result = service.getPanierJSON(id);
 
         // si le panier n'a pas été trouvé
         if( result == null )
@@ -65,19 +65,18 @@ public class PanierResource {
     }
 
     /**
-     * Endpoint permettant de mettre à jour le statut d'un panier uniquement
-     * (la requête patch doit fournir le nouveau statut sur panier, les autres informations sont ignorées)
-     * @param reference la référence du panier dont il faut changer le statut
+     * Endpoint permettant de mettre à jour un panier
+     * @param id la référence du panier dont il faut changer le statut
      * @param panier le panier transmis en HTTP au format JSON et convertit en objet Panier
      * @return une réponse "updated" si la mise à jour a été effectuée, une erreur NotFound sinon
      */
     @PUT
-    @Path("{reference}")
+    @Path("{id}")
     @Consumes("application/json")
-    public Response updatePanier(@PathParam("reference") String reference, Panier panier ){
+    public Response updatePanier(@PathParam("id") String id, Panier panier ){
 
         // si le panier n'a pas été trouvé
-        if( ! service.updatePanier(reference, panier) )
+        if( ! service.updatePanier(id, panier) )
             throw new NotFoundException();
         else
             return Response.ok("updated").build();

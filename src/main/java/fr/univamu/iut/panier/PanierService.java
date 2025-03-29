@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Classe utilisée pour récupérer les informations nécessaires à la ressource
  * (permet de dissocier ressource et mode d'accès aux données)
  */
-public class panierService {
+public class PanierService {
 
     /**
      * Objet permettant d'accéder au dépôt où sont stockées les informations sur les paniers
@@ -20,7 +20,7 @@ public class panierService {
      * Constructeur permettant d'injecter l'accès aux données
      * @param panierRepo objet implémentant l'interface d'accès aux données
      */
-    public  panierService( PanierRepositoryInterface panierRepo) {
+    public  PanierService( PanierRepositoryInterface panierRepo) {
         this.panierRepo = panierRepo;
     }
 
@@ -73,6 +73,6 @@ public class panierService {
      * @return true si le panier a pu être mis à jour
      */
     public boolean updatePanier(String id, Panier panier) {
-        return panierRepo.updatePanier(id, panier.quantite, panier.produits, panier.prix, panier.dateMaj);
+        return panierRepo.updatePanier(id, panier.quantite, panier.produits, panier.prix);
     }
 }

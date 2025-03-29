@@ -18,7 +18,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
     /**
      * Constructeur de la classe
      * @param infoConnection chaîne de caractères avec les informations de connexion
-     *                       (p.ex. jdbc:mariadb://mysql-archi.alwaysdata.net/archi_library_db
+     *                       (p. ex. jdbc:mariadb://mysql-archi.alwaysdata.net/archi_library_db
      * @param user chaîne de caractères contenant l'identifiant de connexion à la base de données
      * @param pwd chaîne de caractères contenant le mot de passe à utiliser
      */
@@ -55,7 +55,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
             // (si la référence du panier est valide)
             if( result.next() )
             {
-                String quantite = result.getString("quantite");
+                int quantite = result.getInt("quantite");
                 Map<String, Map<Integer, String>> produits = result.getObject("produits", Map.class);
                 int prix = result.getInt("prix");
                 Date dateMaj = result.getDate("dateMaj");
@@ -87,10 +87,12 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
             while ( result.next() )
             {
                 String id = result.getString("id");
-                String quantite = result.getString("quantite");
+                int quantite = result.getInt("quantite");
                 Map<String, Map<Integer, String>> produits = result.getObject("produits", Map.class);
                 int prix = result.getInt("prix");
                 Date dateMaj = result.getDate("dateMaj");
+
+                produits.
 
                 // création du panier courant
                 Panier currentPanier = new Panier(id, quantite, produits, prix, dateMaj);
@@ -104,16 +106,16 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
     }
 
     @Override
-    public boolean updatePanier(String id, String quantite, Map<String, Map<Integer, String>> produits, int prix, Date dateMaj) {
+    public boolean updatePanier(String id, int quantite, Map<String, Map<Integer, String>> produits, int prix) {
         String query = "UPDATE panier SET quantite=?, produits=?, prix=?, dateMaj=?  where id=?";
         int nbRowModified = 0;
 
         // construction et exécution d'une requête préparée
         try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
-            ps.setString(1, quantite);
+            ps.setInt(1, quantite);
             ps.setString(2, produits.toString());
             ps.setInt(3, prix);
-            ps.setDate(4, (Date) dateMaj);
+            ps.setDate(4, Date.now());
             ps.setString(5, id);
 
             // exécution de la requête

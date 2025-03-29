@@ -18,7 +18,7 @@ public class PanierApplication extends Application {
         // Création de la connection à la base de données et initialisation du service associé
         PanierService service = null ;
         try{
-            PanierRepositoryMariadb db = new PanierRepositoryMariadb("jdbc:mariadb://mysql-archi.alwaysdata.net/archi_library_db", "archi_library", "1996Arko$782");
+            PanierRepositoryMariadb db = new PanierRepositoryMariadb("jdbc:mariadb://mysql-archi.alwaysdata.net/archi_panier_db", "archi_panier", "1996Arko$782");
             service = new PanierService(db);
         }
         catch (Exception e){

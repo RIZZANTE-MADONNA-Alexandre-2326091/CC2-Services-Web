@@ -12,7 +12,7 @@ public class Panier {
     /**
      * Quantité disponible du panier
      */
-    String quantite;
+    int quantite;
 
     /**
      * Id des produits composant le panier associés à leur quantité dans le panier et à leur unité
@@ -37,7 +37,7 @@ public class Panier {
      * @param prix Prix du panier
      * @param dateMaj Date de la dernière mise à jour du panier
      */
-    public Panier(String id, String quantite, Map<String, Map<Integer, String>> produits, int prix, Date dateMaj) {
+    public Panier(String id, int quantite, Map<String, Map<Integer, String>> produits, int prix, Date dateMaj) {
         this.id = id;
         this.quantite = quantite;
         this.produits = produits;
@@ -65,7 +65,7 @@ public class Panier {
      * Méthode permettant d'accéder à la quantité disponible du panier
      * @return une chaîne de caractères avec la quantité disponible du panier
      */
-    public String getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 
@@ -73,7 +73,7 @@ public class Panier {
      * Méthode permettant de modifier la quantité disponible du panier
      * @param quantite Méthode permettant de modifier la quantité disponible du panier
      */
-    public void setQuantite(String quantite) {
+    public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
 
