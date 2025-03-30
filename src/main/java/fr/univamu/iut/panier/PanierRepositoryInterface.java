@@ -1,5 +1,6 @@
 package fr.univamu.iut.panier;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Map;
 public interface PanierRepositoryInterface {
 
     /**
-     *  Méthode fermant le dépôt où sont stockées les informations sur les paniers
+     *  Méthode fermant le dépôt dans lequel sont stockées les informations sur les paniers
      */
     public void close();
 

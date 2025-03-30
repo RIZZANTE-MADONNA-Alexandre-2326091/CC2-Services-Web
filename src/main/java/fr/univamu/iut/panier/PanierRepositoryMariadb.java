@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Date;
 
 /**
  * Classe permettant d'accéder aux paniers stockés dans une base de données Mariadb
@@ -92,8 +93,6 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
                 int prix = result.getInt("prix");
                 Date dateMaj = result.getDate("dateMaj");
 
-                produits.
-
                 // création du panier courant
                 Panier currentPanier = new Panier(id, quantite, produits, prix, dateMaj);
 
@@ -115,7 +114,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
             ps.setInt(1, quantite);
             ps.setString(2, produits.toString());
             ps.setInt(3, prix);
-            ps.setDate(4, Date.now());
+            ps.setDate(4, (java.sql.Date) new Date());
             ps.setString(5, id);
 
             // exécution de la requête
