@@ -66,7 +66,7 @@ public class PanierResource {
 
     /**
      * Endpoint permettant de mettre à jour un panier
-     * @param id la référence du panier dont il faut changer le statut
+     * @param id l'id du panier dont il faut changer le statut
      * @param panier le panier transmis en HTTP au format JSON et convertit en objet Panier
      * @return une réponse "updated" si la mise à jour a été effectuée, une erreur NotFound sinon
      */
@@ -80,5 +80,40 @@ public class PanierResource {
             throw new NotFoundException();
         else
             return Response.ok("updated").build();
+    }
+
+    /**
+     * Endpoint permettant de créer un panier
+     * @param id l'id du panier à créer
+     * @param panier le panier transmis en HTTP au format JSON et convertit en objet Panier
+     * @return une réponse "created" si la création a été effectuée, une erreur NotFound sinon
+     */
+    @PUT
+    @Path("{id}")
+    @Consumes("application/json")
+    public Response createPanier(@PathParam("id") String id, Panier panier ){
+
+        // si le panier n'a pas été trouvé
+        if( ! service.createPanier(id, panier) )
+            throw new NotFoundException();
+        else
+            return Response.ok("created").build();
+    }
+
+    /**
+     * Endpoint permettant de supprimer un panier
+     * @param id l'id du panier à supprimer
+     * @return une réponse "deleted" si la suppression a été effectuée, une erreur NotFound sinon
+     */
+    @PUT
+    @Path("{id}")
+    @Consumes("application/json")
+    public Response deletePanier(@PathParam("id") String id){
+
+        // si le panier n'a pas été trouvé
+        if( ! service.deletePanier(id) )
+            throw new NotFoundException();
+        else
+            return Response.ok("deleted").build();
     }
 }

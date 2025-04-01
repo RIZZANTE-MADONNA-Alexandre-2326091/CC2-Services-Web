@@ -4,7 +4,6 @@ import java.io.Closeable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Date;
 
 /**
  * Classe permettant d'accéder aux paniers stockés dans une base de données Mariadb
@@ -28,6 +27,9 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
         dbConnection = DriverManager.getConnection( infoConnection, user, pwd ) ;
     }
 
+    /**
+     * Ferme une connection
+     */
     @Override
     public void close() {
         try{
@@ -38,6 +40,10 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
         }
     }
 
+    /**
+     * Méthode retournant les informations sur un panier
+     * @return un Panier avec les attributs donnés dans la base de données
+     */
     @Override
     public Panier getPanier(String id) {
 
@@ -57,7 +63,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
             if( result.next() )
             {
                 int quantite = result.getInt("quantite");
-                Map<String, Map<Integer, String>> produits = result.getObject("produits", Map.class);
+                String produits = result.getString("produits");
                 int prix = result.getInt("prix");
                 Date dateMaj = result.getDate("dateMaj");
 
@@ -71,6 +77,10 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
         return selectedPanier;
     }
 
+    /**
+     * Méthode retournant les informations sur les paniers
+     * @return une ArrayList contenant les informations sur les paniers
+     */
     @Override
     public ArrayList<Panier> getAllPaniers() {
         ArrayList<Panier> listPaniers ;
@@ -89,7 +99,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
             {
                 String id = result.getString("id");
                 int quantite = result.getInt("quantite");
-                Map<String, Map<Integer, String>> produits = result.getObject("produits", Map.class);
+                String produits = result.getString("produits");
                 int prix = result.getInt("prix");
                 Date dateMaj = result.getDate("dateMaj");
 
@@ -104,17 +114,26 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
         return listPaniers;
     }
 
+    /**
+     * Méthode permettant de créer un panier
+     * @param id Id du panier
+     * @param quantite Nouvelle quantité disponible du panier
+     * @param produits Nouveaux id des produits composant le panier associés à leur quantité dans le panier et à leur unité
+     * @param prix Nouveau prix du panier
+     * @param dateMaj Date de la dernière mise à jour du panier
+     * @return true si le panier a été créé, false sinon
+     */
     @Override
-    public boolean updatePanier(String id, int quantite, Map<String, Map<Integer, String>> produits, int prix) {
+    public boolean updatePanier(String id, int quantite, String produits, int prix, Date dateMaj) {
         String query = "UPDATE panier SET quantite=?, produits=?, prix=?, dateMaj=?  where id=?";
         int nbRowModified = 0;
 
         // construction et exécution d'une requête préparée
         try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
             ps.setInt(1, quantite);
-            ps.setString(2, produits.toString());
+            ps.setString(2, produits);
             ps.setInt(3, prix);
-            ps.setDate(4, (java.sql.Date) new Date());
+            ps.setDate(4, dateMaj);
             ps.setString(5, id);
 
             // exécution de la requête
@@ -124,5 +143,57 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
         }
 
         return ( nbRowModified != 0 );
+    }
+
+    /**
+     * Méthode permettant de créer un panier
+     * @param id Id du panier
+     * @param quantite Nouvelle quantité disponible du panier
+     * @param produits Nouveaux id des produits composant le panier associés à leur quantité dans le panier et à leur unité
+     * @param prix Nouveau prix du panier
+     * @param dateMaj Date de la dernière mise à jour du panier
+     * @return true si le panier a été créé, false sinon
+     */
+    @Override
+    public boolean createPanier(String id, int quantite, String produits, int prix, Date dateMaj) {
+        String query = "INSERT INTO `panier`(`id`, `quantite`, `produits`, `prix`, `dateMaj`) VALUES (?,?,?,?,?)";
+        int nbRowCreated = 0;
+
+        // construction et exécution d'une requête préparée
+        try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
+            ps.setInt(1, quantite);
+            ps.setString(2, produits);
+            ps.setInt(3, prix);
+            ps.setDate(4, dateMaj);
+            ps.setString(5, id);
+
+            // exécution de la requête
+            nbRowCreated = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ( nbRowCreated != 0 );
+    }
+
+    /**
+     * Méthode permettant de créer un panier
+     * @param id Id du panier
+     * @return true si le panier existe et la suppression a été faite, false sinon
+     */
+    @Override
+    public boolean deletePanier(String id) {
+        String query = "DELETE FROM panier WHERE id=?";
+        int nbRowDeleted = 0;
+
+        try (PreparedStatement ps = dbConnection.prepareStatement(query)){
+            ps.setString(1,id);
+
+            nbRowDeleted = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ( nbRowDeleted != 0 );
     }
 }

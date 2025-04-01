@@ -73,6 +73,25 @@ public class PanierService {
      * @return true si le panier a pu être mis à jour
      */
     public boolean updatePanier(String id, Panier panier) {
-        return panierRepo.updatePanier(id, panier.quantite, panier.produits, panier.prix);
+        return panierRepo.updatePanier(id, panier.quantite, panier.produits, panier.prix, panier.dateMaj);
+    }
+
+    /**
+     * Méthode permettant de créer les informations d'un panier
+     * @param id id du panier à créer
+     * @param panier les informations à utiliser
+     * @return true si le panier a pu être créé
+     */
+    public boolean createPanier(String id, Panier panier) {
+        return panierRepo.createPanier(id, panier.quantite, panier.produits, panier.prix, panier.dateMaj);
+    }
+
+    /**
+     * Méthode permettant de supprimer les informations d'un panier
+     * @param id id du panier à supprimer
+     * @return true si le panier a pu être supprimé
+     */
+    public boolean deletePanier(String id) {
+        return panierRepo.deletePanier(id);
     }
 }
