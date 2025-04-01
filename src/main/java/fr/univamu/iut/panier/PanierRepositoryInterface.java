@@ -11,20 +11,20 @@ public interface PanierRepositoryInterface {
     /**
      *  Méthode fermant le dépôt dans lequel sont stockées les informations sur les paniers
      */
-    public void close();
+    void close();
 
     /**
      * Méthode retournant le panier dont la référence est passée en paramètre
      * @param id identifiant du panier recherché
      * @return un objet panier représentant le panier recherché
      */
-    public Panier getPanier( String id );
+    Panier getPanier( String id );
 
     /**
      * Méthode retournant la liste des paniers
      * @return une liste d'objets paniers
      */
-    public ArrayList<Panier> getAllPaniers() ;
+    ArrayList<Panier> getAllPaniers() ;
 
     /**
      * Méthode permettant de mettre à jour un panier enregistré
@@ -35,7 +35,7 @@ public interface PanierRepositoryInterface {
      * @param dateMaj Date de la dernière mise à jour du panier
      * @return true si le panier existe et la mise à jour a été faite, false sinon
      */
-    public boolean updatePanier(String id, int quantite, String produits, int prix, Date dateMaj);
+    boolean updatePanier(String id, int quantite, String produits, int prix, Date dateMaj);
 
     /**
      * Méthode permettant de créer un panier
@@ -46,12 +46,12 @@ public interface PanierRepositoryInterface {
      * @param dateMaj Date de la dernière mise à jour du panier
      * @return true si le panier a été créé, false sinon
      */
-    public boolean createPanier(String id, int quantite, String produits, int prix, Date dateMaj);
+    boolean createPanier(String id, int quantite, String produits, int prix, Date dateMaj);
 
     /**
      * Méthode permettant de créer un panier
      * @param id Id du panier
      * @return true si le panier existe et la suppression a été faite, false sinon
      */
-    public boolean deletePanier(String id);
+    boolean deletePanier(String id);
 }

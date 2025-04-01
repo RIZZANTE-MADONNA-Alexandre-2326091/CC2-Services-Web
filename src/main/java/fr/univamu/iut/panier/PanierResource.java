@@ -21,14 +21,6 @@ public class PanierResource {
     public PanierResource(){}
 
     /**
-     * Constructeur permettant d'initialiser le service avec une interface d'accès aux données
-     * @param PanierRepo objet implémentant l'interface d'accès aux données
-     */
-    public PanierResource( PanierRepositoryInterface PanierRepo ){
-        this.service = new PanierService( PanierRepo) ;
-    }
-
-    /**
      * Constructeur permettant d'initialiser le service d'accès aux paniers
      */
     public PanierResource( PanierService service ){
@@ -88,7 +80,7 @@ public class PanierResource {
      * @param panier le panier transmis en HTTP au format JSON et convertit en objet Panier
      * @return une réponse "created" si la création a été effectuée, une erreur NotFound sinon
      */
-    @PUT
+    @POST
     @Path("{id}")
     @Consumes("application/json")
     public Response createPanier(@PathParam("id") String id, Panier panier ){
@@ -105,7 +97,7 @@ public class PanierResource {
      * @param id l'id du panier à supprimer
      * @return une réponse "deleted" si la suppression a été effectuée, une erreur NotFound sinon
      */
-    @PUT
+    @DELETE
     @Path("{id}")
     @Consumes("application/json")
     public Response deletePanier(@PathParam("id") String id){

@@ -3,7 +3,6 @@ package fr.univamu.iut.panier;
 import java.io.Closeable;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Classe permettant d'accéder aux paniers stockés dans une base de données Mariadb
@@ -126,7 +125,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
     @Override
     public boolean updatePanier(String id, int quantite, String produits, int prix, Date dateMaj) {
         String query = "UPDATE panier SET quantite=?, produits=?, prix=?, dateMaj=?  where id=?";
-        int nbRowModified = 0;
+        int nbRowModified;
 
         // construction et exécution d'une requête préparée
         try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
@@ -157,7 +156,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
     @Override
     public boolean createPanier(String id, int quantite, String produits, int prix, Date dateMaj) {
         String query = "INSERT INTO `panier`(`id`, `quantite`, `produits`, `prix`, `dateMaj`) VALUES (?,?,?,?,?)";
-        int nbRowCreated = 0;
+        int nbRowCreated;
 
         // construction et exécution d'une requête préparée
         try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
@@ -184,7 +183,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
     @Override
     public boolean deletePanier(String id) {
         String query = "DELETE FROM panier WHERE id=?";
-        int nbRowDeleted = 0;
+        int nbRowDeleted;
 
         try (PreparedStatement ps = dbConnection.prepareStatement(query)){
             ps.setString(1,id);

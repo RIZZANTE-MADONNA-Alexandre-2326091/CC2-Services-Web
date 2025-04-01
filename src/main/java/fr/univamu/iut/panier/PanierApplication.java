@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@ApplicationPath("/api")
+@ApplicationPath("/panier")
 @ApplicationScoped
 public class PanierApplication extends Application {
     @Override
