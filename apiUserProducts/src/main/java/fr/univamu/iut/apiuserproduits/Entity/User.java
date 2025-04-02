@@ -1,4 +1,4 @@
-package fr.univamu.iut.apiuserproduits;
+package fr.univamu.iut.apiuserproduits.Entity;
 
 /**
  * Représente un utilisateur avec ses détails.

@@ -1,4 +1,7 @@
-package fr.univamu.iut.apiuserproduits;
+package fr.univamu.iut.apiuserproduits.Repository;
+
+import fr.univamu.iut.apiuserproduits.Service.AuthenticationClientInterface;
+import fr.univamu.iut.apiuserproduits.Entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;

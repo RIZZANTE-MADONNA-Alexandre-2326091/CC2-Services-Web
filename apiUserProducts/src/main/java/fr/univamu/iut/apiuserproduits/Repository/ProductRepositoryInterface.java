@@ -1,4 +1,6 @@
-package fr.univamu.iut.apiuserproduits;
+package fr.univamu.iut.apiuserproduits.Repository;
+
+import fr.univamu.iut.apiuserproduits.Entity.Product;
 
 import java.util.List;
 

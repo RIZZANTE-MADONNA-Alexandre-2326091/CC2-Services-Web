@@ -1,5 +1,6 @@
 package fr.univamu.iut.apiuserproduits;
 
+import fr.univamu.iut.apiuserproduits.Service.AuthenticationClientInterface;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

@@ -1,5 +1,9 @@
 package fr.univamu.iut.apiuserproduits;
 
+import fr.univamu.iut.apiuserproduits.Repository.ProductRepositoryInterface;
+import fr.univamu.iut.apiuserproduits.Repository.ProductRepositoryMariadb;
+import fr.univamu.iut.apiuserproduits.Repository.UserRepositoryInterface;
+import fr.univamu.iut.apiuserproduits.Repository.UserRepositoryMariadb;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;

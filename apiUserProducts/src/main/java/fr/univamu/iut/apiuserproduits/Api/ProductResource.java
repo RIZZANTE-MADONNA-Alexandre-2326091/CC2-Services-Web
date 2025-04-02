@@ -1,5 +1,8 @@
-package fr.univamu.iut.apiuserproduits;
+package fr.univamu.iut.apiuserproduits.Api;
 
+import fr.univamu.iut.apiuserproduits.Entity.Product;
+import fr.univamu.iut.apiuserproduits.Repository.ProductRepositoryInterface;
+import fr.univamu.iut.apiuserproduits.Service.ProductService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

@@ -1,4 +1,4 @@
-package fr.univamu.iut.apiuserproduits;
+package fr.univamu.iut.apiuserproduits.Service;
 
 /**
  * Interface pour le client d'authentification.

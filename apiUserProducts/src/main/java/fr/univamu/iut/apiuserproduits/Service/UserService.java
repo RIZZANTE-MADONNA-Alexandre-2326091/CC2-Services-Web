@@ -1,4 +1,7 @@
-package fr.univamu.iut.apiuserproduits;
+package fr.univamu.iut.apiuserproduits.Service;
+import fr.univamu.iut.apiuserproduits.Entity.User;
+import fr.univamu.iut.apiuserproduits.Repository.UserRepositoryInterface;
+import fr.univamu.iut.apiuserproduits.Repository.UserRepositoryMariadb;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.json.bind.Jsonb;
