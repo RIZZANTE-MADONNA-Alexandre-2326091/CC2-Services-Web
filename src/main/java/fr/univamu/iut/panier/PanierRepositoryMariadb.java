@@ -84,7 +84,7 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
     public ArrayList<Panier> getAllPaniers() {
         ArrayList<Panier> listPaniers ;
 
-        String query = "SELECT * FROM Panier";
+        String query = "SELECT * FROM panier";
 
         // construction et exécution d'une requête préparée
         try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
