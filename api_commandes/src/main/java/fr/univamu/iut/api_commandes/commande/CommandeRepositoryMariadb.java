@@ -28,24 +28,26 @@ public class CommandeRepositoryMariadb implements CommandeRepositoryInterface, C
         }
     }
 
-    @Override
     public Commande getCommande(int id_commande) {
         Commande selectedCommande = null;
+
         String query = "SELECT * FROM Commande WHERE id_commande=?";
 
-        try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
+        try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
             ps.setInt(1, id_commande);
+
             ResultSet result = ps.executeQuery();
 
-            if (result.next()) {
-                selectedCommande = new Commande(
-                        result.getInt("id_commande"),
-                        result.getInt("id_user"),
-                        result.getInt("prix"),
-                        result.getDate("date_retrait"),
-                        result.getString("status"),
-                        result.getString("relais")
-                );
+            if( result.next() )
+            {
+                int id_user = result.getInt("id_user");
+                int prix = result.getInt("prix");
+                Date date_retrait = result.getDate("date_retrait");
+                String status = result.getString("status");
+                String relais = result.getString("relais");
+               
+
+                selectedCommande = new Commande( id_commande, id_user, prix, date_retrait, status, relais);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -54,22 +56,28 @@ public class CommandeRepositoryMariadb implements CommandeRepositoryInterface, C
     }
 
     @Override
-    public List<Commande> getAllCommande() {
-        List<Commande> listCommande = new ArrayList<>();
+    public ArrayList<Commande> getAllCommande() {
+        ArrayList<Commande> listCommande ;
+
         String query = "SELECT * FROM Commande";
 
-        try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
+        // construction et exécution d'une requête préparée
+        try ( PreparedStatement ps = dbConnection.prepareStatement(query) ){
+            // exécution de la requête
             ResultSet result = ps.executeQuery();
 
-            while (result.next()) {
-                Commande currentCommande = new Commande(
-                        result.getInt("id_commande"),
-                        result.getInt("id_user"),
-                        result.getInt("prix"),
-                        result.getDate("date_retrait"),
-                        result.getString("status"),
-                        result.getString("relais")
-                );
+            listCommande = new ArrayList<>();
+
+            while ( result.next() )
+            {
+                int id_commande = result.getInt("id_commande");
+                int id_user = result.getInt("id_user");
+                int prix = result.getInt("prix");
+                Date date_retrait = result.getDate("date_retrait");
+                String status = result.getString("status");
+                String relais = result.getString("relais");
+                Commande currentCommande = new Commande(id_commande, id_user, prix, date_retrait, status, relais);
+
                 listCommande.add(currentCommande);
             }
         } catch (SQLException e) {
