@@ -1,5 +1,6 @@
 package fr.univamu.iut.api_commandes.commande;
-
+import jakarta.json.bind.annotation.JsonbDateFormat;
+import java.util.Date;
 import jakarta.ws.rs.Path;
 
 import java.util.Date;
@@ -25,6 +26,7 @@ public class Commande {
         this.id_commande = id_commande;
         this.id_user = id_user;
         this.prix = prix;
+
         this.date_retrait = date_retrait;
         this.status = status;
         this.relais = relais;

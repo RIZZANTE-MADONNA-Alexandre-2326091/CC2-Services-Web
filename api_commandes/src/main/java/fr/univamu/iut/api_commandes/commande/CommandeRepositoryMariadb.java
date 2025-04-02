@@ -87,7 +87,7 @@ public class CommandeRepositoryMariadb implements CommandeRepositoryInterface, C
     }
 
     @Override
-    public boolean updateCommande(int id_commande, int id_user, int prix, Date date_retrait, String status, String relais) {
+    public boolean updateCommande(Commande commande, int id_commande, int id_user, int prix, Date date_retrait, String status, String relais) {
         String query = "UPDATE Commande SET id_user=?, prix=?, date_retrait=?, status=?, relais=? WHERE id_commande=?";
         int nbRowModified;
 

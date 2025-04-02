@@ -42,7 +42,7 @@ public class CommandeService {
     }
 
     public boolean updateCommande( Commande commande) {
-        return commandeRepo.updateCommande(commande.getId_commande(), commande.getId_user(), commande.getPrix(), commande.getDate_retrait(), commande.getStatus(), commande.getRelais());
+        return commandeRepo.updateCommande(commande, commande.getId_commande(), commande.getId_user(), commande.getPrix(), commande.getDate_retrait(), commande.getStatus(), commande.getRelais());
     }
 
     public boolean deleteCommande(Commande commande) {
