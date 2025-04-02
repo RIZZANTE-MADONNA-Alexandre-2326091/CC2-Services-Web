@@ -122,15 +122,14 @@ public class CommandeRepositoryMariadb implements CommandeRepositoryInterface, C
 
     @Override
     public boolean addCommande(Commande commande) {
-        String query = "INSERT INTO Commande (id_user, date_retrait, prix, status, relais) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Commande (id_user, date_retrait, prix, status, relais) VALUES (?, null, ?, ?, ?)";
         int nbRowModified;
 
         try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
             ps.setInt(1, commande.getId_user());
-            ps.setDate(2, new java.sql.Date(commande.getDate_retrait().getTime()));
-            ps.setInt(3, commande.getPrix());
-            ps.setString(4, commande.getStatus());
-            ps.setString(5, commande.getRelais());
+            ps.setInt(2, commande.getPrix());
+            ps.setString(3, commande.getStatus());
+            ps.setString(4, commande.getRelais());
 
             nbRowModified = ps.executeUpdate();
         } catch (SQLException e) {
