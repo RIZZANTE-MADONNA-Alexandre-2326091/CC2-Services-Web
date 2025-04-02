@@ -1,4 +1,4 @@
-package fr.univamu.iut.apicommandes;
+package fr.univamu.iut.apiuserproduits;
 
 /**
  * Représente un utilisateur avec ses détails.

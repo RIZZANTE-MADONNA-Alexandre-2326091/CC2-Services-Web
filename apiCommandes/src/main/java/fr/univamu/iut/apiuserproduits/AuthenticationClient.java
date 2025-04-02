@@ -1,4 +1,4 @@
-package fr.univamu.iut.apicommandes;
+package fr.univamu.iut.apiuserproduits;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
