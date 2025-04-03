@@ -49,7 +49,7 @@ class Controllers
      */
     public function panierAction($id, $data, $panierCheck)
     {
-        $
+        $panierCheck->getProduit($id, $data);
     }
 
     /**
@@ -60,7 +60,7 @@ class Controllers
      */
     public function commmandeAction($id, $data, $commandeCheck)
     {
-
+        $commandeCheck->getCommande($id, $data);
     }
 
     /**
@@ -70,7 +70,7 @@ class Controllers
      */
     public function commandeCreation($data, $commandeCreation)
     {
-
+        //$commandeCreation->getCommandeCreation($data);
     }
 
     /**
@@ -81,6 +81,6 @@ class Controllers
      */
     public function produitAction($id, $data, $produitCheck)
     {
-
+        $produitCheck->getProduit($id, $data);
     }
 }
