@@ -63,7 +63,7 @@ $commandeChecking = new CommandeChecking();
 
 $commandeCreation = new CommandeCreation();
 
-$presenter = new Presenter();
+$presenter = new Presenter($utilisateurCheck);
 
 
 //chemin de l'URL

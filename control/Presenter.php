@@ -8,9 +8,10 @@ namespace control;
 class Presenter
 {
     protected $utilisateurCheck;
+
     public function __construct($utilisateurCheck)
     {
-        $utilisateurCheck = $utilisateurCheck;
+        $this->utilisateurCheck = $utilisateurCheck;
     }
 
     public function getCommandes()

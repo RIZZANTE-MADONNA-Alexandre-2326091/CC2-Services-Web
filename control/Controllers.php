@@ -12,10 +12,12 @@ class Controllers
      * @param $userCheck
      * @param $dataUsers
      */
-    public function authentifierAction($userCheck, $dataUsers){
+    public function authentifierAction($userCheck, $dataUsers)
+    {
 
         // Si l'utilisateur n'a pas de session ouverte
-        if( !isset($_SESSION['login']) ) {
+        if( !isset($_SESSION['login']) )
+        {
 
             // Si la page d'origine est le formulaire de connexion
             if( isset($_POST['login']) && isset($_POST['password']) )
@@ -29,16 +31,19 @@ class Controllers
 
                 }
                 // Enregistrement des informations de session après une authentification réussie
-                else {
+                else
+                {
                     $_SESSION['login'] = $_POST['login'] ;
                 }
             }
-            else{
+            else
+            {
                 // retourne une erreur si la personne ne passe pas par le forumlaire de création ou de connexion
                 $error = 'not connected';
                 return $error;
             }
         }
+        return null;
     }
 
     /**

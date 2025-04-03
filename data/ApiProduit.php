@@ -2,6 +2,7 @@
 
 namespace data;
 
+use domain\Produit;
 use service\ProduitAccessInterface;
 include_once 'service/ProduitAccessInterface.php';
 
@@ -23,10 +24,29 @@ class ApiProduit implements ProduitAccessInterface
         $reponse = curl_exec($curlConnection);
         curl_close($curlConnection);
 
+        $reponse = json_decode($reponse);
+
         if(!$reponse)
         {
             echo curl_error($curlConnection);
         }
+
+        $produits = array();
+        foreach ($reponse as $produit)
+        {
+            $id = $produit['id'];
+            $name = $produit['name'];
+            $prix = $produit['price'];
+            $quantite = $produit['quantite'];
+            $unit = $produit['unit'];
+            $currentProduit = new Produit($id, $name, $prix, $quantite, $unit);
+            $produits[$id] = $currentProduit;
+        }
+
+        $produitsSerialized = serialize($produits);
+        file_put_contents('data/cache_alternance', $produitsSerialized);
+
+        return $produits;
     }
     public function getProduit($id)
     {

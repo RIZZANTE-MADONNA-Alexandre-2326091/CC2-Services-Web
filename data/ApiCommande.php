@@ -7,13 +7,16 @@ include_once 'service/CommandeAccessInterface.php';
 
 class ApiCommande implements CommandeAccessInterface
 {
-    public function getCommande($id)
+    public function getCommandes()
     {
 
     }
 
-    public function getCommandes()
+    public function getCommande($id)
     {
+        $commandeSerialized = file_get_contents('data/cache_commande');
+        $commande = unserialize($commandeSerialized);
 
+        return $commande[$id];
     }
 }
