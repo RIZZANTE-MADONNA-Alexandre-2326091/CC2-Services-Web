@@ -6,5 +6,8 @@ use service\ProduitAccessInterface;
 
 class ApiProduit extends ProduitAccessInterface
 {
+    public function ()
+    {
 
+    }
 }

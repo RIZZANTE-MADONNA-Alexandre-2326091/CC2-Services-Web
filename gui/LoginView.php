@@ -11,10 +11,10 @@ class LoginView extends View
     {
         parent::__construct($layout);
 
-        $this->title = 'Exemple Annonces Basic PHP: Connexion';
+        $this->title = 'Serveurs Web API: Connexion';
 
         $this->content = '
-            <form method="post" action="/annonces/index.php/annonces">
+            <form method="post" action="/services-web-ihm/index.php/utilisateur">
                 <label for="login"> Votre identifiant </label> :
                 <input type="text" name="login" id="login" placeholder="defaut" maxlength="12" required />
                 <br />
@@ -23,8 +23,6 @@ class LoginView extends View
         
                 <input type="submit" value="Envoyer">
             </form>
-            
-            <a href="/index.php/create">Création d\'un nouveau compte</a>
             ';
     }
 }
