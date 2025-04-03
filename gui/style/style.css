@@ -1,0 +1,11 @@
+#titre {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
